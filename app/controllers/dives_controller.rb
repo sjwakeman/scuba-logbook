@@ -3,7 +3,7 @@ class DivesController < ApplicationController
   get "/dives" do
    if logged_in?
      @dives = Dive.all
-     erb :'dives/dives'
+     erb :'dives/show_dives'
    else
      redirect to '/login'
    end
@@ -11,7 +11,7 @@ class DivesController < ApplicationController
 
  get '/dives/new' do
    if logged_in?
-     erb :'dives/display_dive'
+     erb :'dives/show_dive'
    else
      redirect to '/login'
    end
@@ -29,7 +29,7 @@ class DivesController < ApplicationController
  get '/dives/:id' do
    if logged_in?
      @dive = Dive.find_by_id(params[:id])
-     erb :'dives/display_dive'
+     erb :'dives/show_dive'
    else
      redirect to '/login'
    end
@@ -64,9 +64,9 @@ class DivesController < ApplicationController
       @dive = Dive.find_by_id(params[:id])
       if @dive.user_id == current_user.id
         @dive.delete
-        redirect to '/dives'
+        redirect to '/show_dives'
       else
-        redirect to '/dives'
+        redirect to '/show_dive'
       end
     else
       redirect to '/login'
