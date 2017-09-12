@@ -1,5 +1,11 @@
-<title>Welcome to the Sinatra Template!</title>
-<h2>Welcome to your Scuba Logbook!</h2>
-<a href="users/signup">Click here to signup</a>
+<p>Welcome, <%= @user.username %>!</p>
+<form action="/dives" action="post">
+<a href="/edit_dive">Edit a dive</a>
+<input type="submit" value="edit_dive">
 <br><br>
-<a href="users/login">Click here to login</a>
+<a href="/show_dives">Show all dives</a>
+<input type="submit" value="show_dives">
+<br><br>
+<a href="/create_dive">Create a dive</a>
+<input type="submit" value="create_dive"
+</form>
