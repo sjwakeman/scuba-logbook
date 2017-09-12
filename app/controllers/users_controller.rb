@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/signup'
     else
-      redirect to "/dives"
+      redirect to "/welcome"
     end
   end
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   if !logged_in?
      erb :'users/login'
   else
-    redirect 'dives/show_dives'
+    redirect 'dives/welcome'
   end
 end
 
@@ -36,7 +36,7 @@ end
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user[:id]
-      redirect 'dives/show_dives'
+      redirect 'dives/welcome'
     else
       erb :'users/signup'
     end
