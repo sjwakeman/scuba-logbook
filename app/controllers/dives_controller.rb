@@ -5,79 +5,85 @@ class DivesController < ApplicationController
 
   get '/dives/new' do
     if logged_in?
-      erb :'dives/show_dive'
+      erb :'dives/create_dive'
     else
       redirect to '/login'
     end
   end
 
   get "/dives" do
-   if logged_in?
-     @dives = Dive.all
-     erb :'dives/show_dives'
-   else
-     redirect to '/login'
-   end
- end
+    if logged_in?
+      @dives = Dive.all
+      @dive = []
+        @dives.each do |d|
+          @dive << {User.find(d.user_id).username => d.content, user_id: d.user_id, id: d.id}
+        end
+        @user = User.find(session[:id])
+        erb :'dives/show_dives'
+    else
+      redirect "/login"
+    end
+  end
+
 
  post '/dives' do
-   if params[:content] == ""
-     redirect to "/dives/create_dive"
+   if !logged_in?
+     redirect "/users/login"
+   elsif params[:content].empty?
+     redirect "/dives/create_dive"
    else
-     binding.pry
-     @dive = current_user.dives.create(content: params[:content])
-     redirect to "/dives/#{@dive.id}"
+     @content = params[:content]
+     Dive.create(content: @content, user_id: session[:id])
+     redirect "/show_dives"
    end
  end
 
-
-
-
-
  get '/dives/:id' do
-   if logged_in?
+   if !logged_in?
+     redirect "/users/login"
+   else
      @dive = Dive.find_by_id(params[:id])
      erb :'dives/show_dive'
-   else
-     redirect to '/login'
    end
  end
 
  get '/dives/:id/edit' do
-    if logged_in?
-      @dive = Dive.find_by_id(params[:id])
-      if @dive.user_id == current_user.id
-       erb :'dives/edit_dive'
-      else
-        redirect to '/dives'
-      end
+    if !logged_in?
+      redirect to 'users/login'
     else
-      redirect to '/login'
+      @dive = current_user.dives.find_by(:id => params[:id])
+      if @dive
+        erb :'dives/edit_dive'
+      else
+        redirect to 'users/welcome'
+      end
     end
   end
 
   patch '/dives/:id' do
-    if params[:content] == ""
-      redirect to "/dives/#{params[:id]}/edit"
+    @dive = current_user.dives.find_by(:id => params[:id])
+    @content = params[:content]
+    if !logged_in?
+      redirect "/users/login"
+    elsif params[:content].empty?
+      redirect "/dives/#{@tweet.id}/edit"
     else
-      @dive = Dive.find_by_id(params[:id])
-      @dive.content = params[:content]
-      @dive.save
-      redirect to "/dives/#{@dive.id}"
+      @dive.update(content: @content)
+      redirect "/dives/#{@dive.id}"
     end
   end
 
   delete '/dives/:id/delete' do
-    if logged_in?
-      @dive = Dive.find_by_id(params[:id])
-      if @dive.user_id == current_user.id
-        @dive.delete
-        redirect to '/show_dives'
-      else
-        redirect to '/show_dive'
-      end
+    @dive = Dive.find_by(:id => params[:id])
+    if logged_in? && @dive.user_id == current_user.id
+      @dive.destroy
+      redirect "/show_dives"
+    #does not let a user delete a dive they did not create
+    elsif !(@dive.user_id == current_user.id)
+      redirect "users/login"
     else
-      redirect to '/login'
+      erb :"users/login"
+
     end
   end
 end
