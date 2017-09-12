@@ -1,4 +1,15 @@
+require 'pry'
+require 'tux'
+
 class DivesController < ApplicationController
+
+  get '/dives/new' do
+    if logged_in?
+      erb :'dives/show_dive'
+    else
+      redirect to '/login'
+    end
+  end
 
   get "/dives" do
    if logged_in?
@@ -9,22 +20,19 @@ class DivesController < ApplicationController
    end
  end
 
- get '/dives/new' do
-   if logged_in?
-     erb :'dives/show_dive'
-   else
-     redirect to '/login'
-   end
- end
-
  post '/dives' do
    if params[:content] == ""
      redirect to "/dives/new"
    else
+     binding.pry
      @dive = current_user.dives.create(content: params[:content])
      redirect to "/dives/#{@dive.id}"
    end
  end
+
+
+
+
 
  get '/dives/:id' do
    if logged_in?
