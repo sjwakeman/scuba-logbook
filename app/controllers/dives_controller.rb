@@ -22,7 +22,7 @@ class DivesController < ApplicationController
 
  post '/dives' do
    if params[:content] == ""
-     redirect to "/dives/new"
+     redirect to "/dives/create_dive"
    else
      binding.pry
      @dive = current_user.dives.create(content: params[:content])
