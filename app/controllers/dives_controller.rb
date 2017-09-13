@@ -21,7 +21,7 @@ class DivesController < ApplicationController
         @user = User.find(session[:id])
         erb :'dives/show_dives'
     else
-      redirect "/users/login"
+      redirect "/login"
     end
   end
 
