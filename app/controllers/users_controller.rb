@@ -36,7 +36,7 @@ end
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user[:id]
-      redirect 'dives/welcome'
+      redirect "/dives/show_dives"
     else
       erb :'users/signup'
     end
@@ -50,10 +50,4 @@ end
       redirect "/"
     end
   end
-
-  get "/users/:slug" do
-    @user = User.find_by_slug(params["slug"])
-    erb :"/users/show"
-  end
-
 end
