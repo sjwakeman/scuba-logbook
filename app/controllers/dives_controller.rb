@@ -3,7 +3,7 @@ require 'tux'
 
 class DivesController < ApplicationController
 
-  get '/dives/new' do
+  get '/dives/create_dive' do
     if logged_in?
       erb :'dives/create_dive'
     else
@@ -11,7 +11,7 @@ class DivesController < ApplicationController
     end
   end
 
-  get "/dives" do
+  get '/dives' do
     if logged_in?
       @dives = Dive.all
       @dive = []
