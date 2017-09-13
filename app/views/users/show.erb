@@ -1,4 +1,6 @@
-<h2>Welcome to your Scuba Logbook!</h2>
-<a href="/signup">Click here to signup</a>
-<br><br>
-<a href="/login">Click here to login</a>
+<p> Here are your dives, <%= @user.username %>
+<% @user.dives.each do |dive| %>
+  <div>
+    <%= dive.content %>
+  </div>
+<% end %>
