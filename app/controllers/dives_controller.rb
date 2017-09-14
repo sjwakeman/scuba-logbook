@@ -42,7 +42,7 @@ class DivesController < ApplicationController
    if !logged_in?
      redirect "/users/login"
    else
-     @dive = Dive.find_by_id(params[:id])
+     @dive = Dive.all.find_by_id(params[:id])
      erb :'dives/show_dive'
    end
  end
@@ -66,7 +66,7 @@ class DivesController < ApplicationController
     if !logged_in?
       redirect "/users/login"
     elsif params[:content].empty?
-      redirect "/dives/#{@tweet.id}/edit"
+      redirect "/dives/#{@dive.id}/edit"
     else
       @dive.update(content: @content)
       redirect "/dives/#{@dive.id}"
@@ -80,7 +80,7 @@ class DivesController < ApplicationController
       redirect "dives/show_dives"
     #does not let a user delete a dive they did not create
     elsif !(@dive.user_id == current_user.id)
-      redirect "users/login"
+      redirect "dives/show_dives"
     else
       erb :"users/login"
 
