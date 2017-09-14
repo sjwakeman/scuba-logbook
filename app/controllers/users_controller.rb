@@ -36,7 +36,7 @@ end
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user[:id]
-      redirect to "/dives/show_dives"
+      erb :'dives/show_dives'
     else
       erb :'users/signup'
     end
