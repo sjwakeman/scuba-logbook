@@ -1,3 +1,6 @@
+require 'pry'
+require 'tux'
+
 class UsersController < ApplicationController
 
   get '/' do
@@ -36,7 +39,7 @@ end
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user[:id]
-      erb :'dives/show_dives'
+      redirect to 'dives/welcome'
     else
       erb :'users/signup'
     end
