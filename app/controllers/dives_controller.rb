@@ -19,6 +19,7 @@ class DivesController < ApplicationController
           @dive << {User.find(d.user_id).username => d.content, user_id: d.user_id, id: d.id}
           @user = User.find(session[:id])
         end
+        binding.pry
         erb :'dives/show_dives'
     else
       redirect "/login"

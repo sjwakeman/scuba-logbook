@@ -1,4 +1,4 @@
-<p> Here are your dives, <%= @user.username %></p>
+<p> Here are your dives, <%= @user.username unless @user.blank? %></p>
 <% @user.dives.each do |dive| %>
   <p>
     <%= dive.content %>

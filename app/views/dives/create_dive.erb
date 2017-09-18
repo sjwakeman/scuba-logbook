@@ -1,4 +1,4 @@
-<p>Welcome, <%= @user.username %>!</p>
+<p>Welcome, <%= @user.username unless @user.blank? %>!</p>
 <a href="/dives/new">Enter your dive</a>
 <% @dives.each do |d| %>
   <% if d[:user_id] == session[:id] %>

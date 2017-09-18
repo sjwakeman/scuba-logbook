@@ -1,4 +1,4 @@
-<p>Welcome, <%= @user.username %>!</p>
+<p>Welcome, <%= @user.username unless @user.blank? %>!</p>
 <form action="/dives" action="post">
 <a href="/edit_dive">Edit a dive</a>
 <input type="submit" value="edit_dive">
