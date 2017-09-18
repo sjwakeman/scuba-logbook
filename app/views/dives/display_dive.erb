@@ -1,8 +1,0 @@
-<form action="/divess/<%= @dive.id %>/delete" method="post">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Dive"></input>
-</form>
-<% if @dive %>
-<%= @dive.content %>
-<% end %>
-<a href="/dives/edit_dive">Edit Dive</a>

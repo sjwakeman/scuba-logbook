@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if params[:username] = "" || params[:email] = "" || params[:password] = ""
+    if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to "/login"
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
@@ -37,6 +37,7 @@ end
 
   post '/login' do
     @user = User.find_by(username: params[:username])
+    binding.pry
     if @user && @user.authenticate(params[:password])
       session[:id] = @user[:id]
       redirect to 'dives/welcome'
