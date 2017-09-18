@@ -17,8 +17,8 @@ class DivesController < ApplicationController
       @dive = []
         @dives.each do |d|
           @dive << {User.find(d.user_id).username => d.content, user_id: d.user_id, id: d.id}
+          @user = User.find(session[:id])
         end
-        @user = User.find(session[:id])
         erb :'dives/show_dives'
     else
       redirect "/login"
