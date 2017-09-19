@@ -15,7 +15,7 @@ class DivesController < ApplicationController
     end
   end
 
-  get '/dives' do
+  get '/show_dives' do
     if logged_in?
       @dives = Dive.all
       @dive = []
