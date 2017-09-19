@@ -9,13 +9,15 @@ class DivesController < ApplicationController
 
   get '/dives/create_dive' do
     if logged_in?
+      
       erb :'dives/create_dive'
     else
       redirect to 'users/login'
     end
   end
 
-  get '/show_dives' do
+  #get '/show_dives' do
+  get '/dives' do
     if logged_in?
       @dives = Dive.all
       @dive = []
