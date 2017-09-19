@@ -1,6 +1,4 @@
 <p> Here are your dives, <%= @user.username unless @user.blank? %></p>
 <% @user.dives.each do |dive| %>
-  <p>
-    <%= dive.content %>
-  </p>
+<h1><a href="/dives/<%= dive.id %>"><%= yield %></a></h1>
 <% end %>
