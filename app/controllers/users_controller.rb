@@ -40,7 +40,7 @@ end
     binding.pry
     if @user && @user.authenticate(params[:password])
       session[:id] = @user[:id]
-      redirect to 'dives/welcome'
+      redirect to '/dives'
     else
       erb :'users/signup'
     end
