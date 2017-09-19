@@ -1,11 +1,11 @@
-<p>Welcome, <%= @user.username unless @user.blank? %>!</p>
+<p>Welcome, <%= @user.username %>!</p>
 <form action="/dives" action="post">
 <a href="/edit_dive">Edit a dive</a>
-<input type="submit" value="edit_dive">
+<input type="submit" value="submit">
 <br><br>
 <a href="/show_dives">Show all dives</a>
-<input type="submit" value="show_dives">
+<input type="submit" value="submit">
 <br><br>
 <a href="/create_dive">Create a new dive</a>
-<input type="submit" value="create_dive"
+<input type="submit" value="submit"
 </form>
