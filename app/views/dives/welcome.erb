@@ -1,11 +1,17 @@
-<p>Welcome, <%= @user.username %>!</p>
-<form action="/dives" action="post">
-<a href="/edit_dive">Edit a dive</a>
-<input type="submit" value="submit">
-<br><br>
-<a href="/show_dives">Show all dives</a>
-<input type="submit" value="submit">
-<br><br>
-<a href="/create_dive">Create a new dive</a>
-<input type="submit" value="submit"
-</form>
+<!--p>Welcome, <!%= @user.username %>!</p-->
+<h2>Menu</h2>
+<p>
+  <form action="/show_dives" action="get">
+    <input type="submit" value="Display dives">
+  </form>
+</p>
+<p>
+  <form action="/edit_dive" action="get">
+    <input type="submit" value="Edit dive">
+  </form>
+</p>
+<p>
+  <form action="/show_dives" action="get">
+    <input type="submit" value="Create new dive">
+  </form>
+</p>
