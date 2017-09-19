@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect to "/dives"
+      redirect to "/dives/welcome"
     end
   end
 
@@ -40,7 +40,7 @@ end
     binding.pry
     if @user && @user.authenticate(params[:password])
       session[:id] = @user[:id]
-      redirect to '/dives'
+      redirect to '/dives/welcome'
     else
       erb :'users/signup'
     end
