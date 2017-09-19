@@ -3,6 +3,10 @@ require 'tux'
 
 class DivesController < ApplicationController
 
+  get '/dives/welcome' do
+    erb :'dives/welcome'
+  end
+
   get '/dives/create_dive' do
     if logged_in?
       erb :'dives/create_dive'
