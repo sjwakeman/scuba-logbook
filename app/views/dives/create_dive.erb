@@ -1,5 +1,6 @@
 <p>Welcome, <%= @user.username unless @user.blank? %>!</p>
-<a href="/dives/new">Enter your dive</a>
+<h2>Enter your dive</h2>
+<form action="/dives" method="POST">
 <% @dives.each do |d| %>
   <% if d[:user_id] == session[:id] %>
   <br>
@@ -9,3 +10,5 @@
     <a href="users/<%= d.keys[0] %>"><%= d.keys[0] %></a>: <%= d.values[0] %>
   <% end %>
 <% end %>
+<input type="submit" value="submit">
+</form>
