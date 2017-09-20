@@ -1,3 +1,3 @@
-class Dive < ActiveRecord::Base
+class Dife < ActiveRecord::Base
   belongs_to :user
 end

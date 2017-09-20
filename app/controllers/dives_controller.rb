@@ -9,7 +9,7 @@ class DivesController < ApplicationController
 
   get '/dives/create_dive' do
     if logged_in?
-      
+
       erb :'dives/create_dive'
     else
       redirect to 'users/login'
@@ -19,12 +19,11 @@ class DivesController < ApplicationController
   #get '/show_dives' do
   get '/dives' do
     if logged_in?
-      @dives = Dive.all
+      @dives = Dife.all
       @dive = []
-        @dives.each do |d|
-          @dive << {User.find(d.user_id).username => d.content, user_id: d.user_id, id: d.id}
-          @user = User.find(session[:id])
-        end
+
+      @user = User.find(session[:user_id])
+      
         erb :'dives/show_dives'
     else
       redirect "/login"

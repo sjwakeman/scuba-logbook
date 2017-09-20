@@ -11,6 +11,7 @@ class CreateDives < ActiveRecord::Migration
        t.integer :dive_start
        t.integer :dive_end
        t.text :dive_comments
+       t.integer :user_id
      end
    end
  end

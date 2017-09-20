@@ -1,4 +1,4 @@
-<!--p>Welcome, <!%= @user.username %>!</p-->
+<p>Welcome, <%= @user.username unless @user.blank? %>!</p>
 
 <h2>Menu</h2>
 

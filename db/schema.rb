@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170904232321) do
     t.integer "dive_start"
     t.integer "dive_end"
     t.text    "dive_comments"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
