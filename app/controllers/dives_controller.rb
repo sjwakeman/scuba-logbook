@@ -20,7 +20,7 @@ class DivesController < ApplicationController
   #get '/show_dives' do
   get '/dives' do
     if logged_in?
-      @dives = Dife.all
+      @dives = Dive.all
       @dive = []
       @user = User.find(session[:user_id]) #displays @user.username on show_dives.erb page
         erb :'dives/show_dives'
@@ -49,7 +49,7 @@ class DivesController < ApplicationController
      redirect "/users/login"
    else
      @user = User.find(session[:user_id])
-     @dive = Dife.all.find_by_id(params[:user_id])
+     @dive = Dive.all.find_by_id(params[:user_id])
      erb :'dives/show_dive'
    end
  end
@@ -85,7 +85,7 @@ class DivesController < ApplicationController
 
   delete '/dives/:id/delete' do
     @user = User.find(session[:user_id])
-    @dive = Dife.find_by(:user_id => params[:user_id])
+    @dive = Dive.find_by(:user_id => params[:user_id])
     if logged_in? && @dive.user_id == current_user.user_id
       @dive.destroy
       redirect "dives/show_dives"

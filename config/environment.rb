@@ -9,3 +9,7 @@ ActiveRecord::Base.establish_connection(
 )
 
 require_all 'app'
+
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'dive', 'dives'
+end
