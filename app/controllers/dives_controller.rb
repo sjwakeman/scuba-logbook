@@ -22,7 +22,7 @@ class DivesController < ApplicationController
     if logged_in?
       @dives = Dife.all
       @dive = []
-      @user = User.find(session[:user_id])
+      @user = User.find(session[:user_id]) #displays @user.username on show_dives.erb page
         erb :'dives/show_dives'
     else
       redirect "/login"
