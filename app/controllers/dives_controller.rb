@@ -4,13 +4,13 @@ require 'tux'
 class DivesController < ApplicationController
 
   get '/dives/welcome' do
-    @user = User.find(session[:user_id])
+    @user = current_user
       erb :'dives/welcome'
   end
 
   get '/dives/create_dive' do
     if logged_in?
-    @user = User.find(session[:user_id])
+    @user = current_user
       #erb :'dives/create_dive'
       erb :'dives/dive_sheet'
     else
@@ -23,7 +23,7 @@ class DivesController < ApplicationController
     if logged_in?
       @dives = Dive.all
       @dive = []
-      @user = User.find(session[:user_id]) #displays @user.username on show_dives.erb page
+      @user = current_user #displays @user.username on show_dives.erb page
         erb :'dives/show_dives'
     else
       redirect "/login"
@@ -34,14 +34,14 @@ class DivesController < ApplicationController
  post '/dives' do
    if !logged_in?
      redirect "/users/login"
-   elsif params[:dive_number].empty?
-     @user = User.find(session[:user_id])
+   elsif params[:dive_number].empty? || params[:location].empty?
+
      redirect "/dives/create_dive"
    else
-     @user = User.find(session[:user_id])
+
      @dive_number = params[:dive_number]
-     Dive.create(dive_number: @dive_number, user_id: session[:user_id])
-     redirect "dives/show_dives"
+     Dive.create(dive_number: @dive_number, user_id: current_user.id, location: params[:location], date: params[:date], visability: params[:visability], bottom_time_to_date: [bottom_time_to_date], bottom_time_this_dive: params[:bottom_time_this_dive], accumulated_time: [:accumulated_time], dive_start: params[:dive_start], dive_end: params[:dive_end], dive_comments: params[:dive_comments])
+     redirect "/dives"
    end
  end
 
@@ -49,7 +49,7 @@ class DivesController < ApplicationController
    if !logged_in?
      redirect "/users/login"
    else
-     @user = User.find(session[:user_id])
+     @user = current_user
      @dive = Dive.all.find_by_id(params[:user_id])
      erb :'dives/show_dive'
    end
@@ -59,19 +59,19 @@ class DivesController < ApplicationController
     if !logged_in?
       redirect to 'users/login'
     else
-      @user = User.find(session[:user_id])
+      @user = current_user
       @dive = current_user.dives.find_by(:user_id => params[:user_id])
       if @dive
         erb :'dives/edit_dive'
       else
-        @user = User.find(session[:user_id])
+        @user =@user = current_user
         redirect to 'dives/create_dive'
       end
     end
   end
 
   patch '/dives/:id' do
-    @user = User.find(session[:user_id])
+    @user = current_user
     @dive = current_user.dives.find_by(:user_id => params[:user_id])
     @dive_number = params[:dive_number]
     if !logged_in?
@@ -85,7 +85,7 @@ class DivesController < ApplicationController
   end
 
   delete '/dives/:id/delete' do
-    @user = User.find(session[:user_id])
+    @user = current_user
     @dive = Dive.find_by(:user_id => params[:user_id])
     if logged_in? && @dive.user_id == current_user.user_id
       @dive.destroy
