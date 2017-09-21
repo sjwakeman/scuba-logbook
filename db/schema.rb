@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 20170904232321) do
     t.string  "date"
     t.string  "location"
     t.string  "visability"
-    t.integer "bottom_time_to_date"
-    t.integer "bottom_time_this_dive"
-    t.integer "accumulated_time"
-    t.integer "dive_start"
-    t.integer "dive_end"
-    t.text    "dive_comments"
+    t.string  "bottom_time_to_date"
+    t.string  "bottom_time_this_dive"
+    t.string  "accumulated_time"
+    t.string  "dive_start"
+    t.string  "dive_end"
+    t.string  "dive_comments"
     t.integer "user_id"
   end
 
