@@ -73,7 +73,7 @@ class DivesController < ApplicationController
       if @dive
         erb :'dives/edit_dive'
       else
-        @user =@user = current_user
+        @user = current_user
         redirect to 'dives/create_dive'
       end
     end
