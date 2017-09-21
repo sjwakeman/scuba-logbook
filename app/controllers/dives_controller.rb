@@ -38,7 +38,6 @@ class DivesController < ApplicationController
 
      redirect "/dives/create_dive"
    else
-
      @dive_number = params[:dive_number]
      @date = params[:date]
      @location = params[:location]
