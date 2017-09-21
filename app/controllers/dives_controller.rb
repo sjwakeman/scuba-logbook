@@ -11,7 +11,8 @@ class DivesController < ApplicationController
   get '/dives/create_dive' do
     if logged_in?
     @user = User.find(session[:user_id])
-      erb :'dives/create_dive'
+      #erb :'dives/create_dive'
+      erb :'dives/dive_sheet'
     else
       redirect to 'users/login'
     end
