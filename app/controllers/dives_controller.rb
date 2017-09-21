@@ -34,13 +34,13 @@ class DivesController < ApplicationController
  post '/dives' do
    if !logged_in?
      redirect "/users/login"
-   elsif params[:content].empty?
+   elsif params[:dive_number].empty?
      @user = User.find(session[:user_id])
      redirect "/dives/create_dive"
    else
      @user = User.find(session[:user_id])
-     @content = params[:content]
-     Dife.create(content: @content, user_id: session[:user_id])
+     @dive_number = params[:dive_number]
+     Dive.create(dive_number: @dive_number, user_id: session[:user_id])
      redirect "dives/show_dives"
    end
  end
@@ -73,13 +73,13 @@ class DivesController < ApplicationController
   patch '/dives/:id' do
     @user = User.find(session[:user_id])
     @dive = current_user.dives.find_by(:user_id => params[:user_id])
-    @content = params[:content]
+    @dive_number = params[:dive_number]
     if !logged_in?
       redirect "/users/login"
-    elsif params[:content].empty?
+    elsif params[:dive_number].empty?
       redirect "/dives/#{@dive.id}/edit"
     else
-      @dive.update(content: @content)
+      @dive.update(dive_number: @dive_number)
       redirect "/dives/#{@dive.id}"
     end
   end
