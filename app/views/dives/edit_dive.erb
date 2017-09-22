@@ -1,5 +1,24 @@
 <form action="/dives/<%= @dive.id %>" method="post" >
 <input type="hidden" id="hidden" name="_method" value="patch">
-<input type="text" name="content" value="<%= @dive.content %>">
+<!--input type="text" name="content" value="<%= @dive.content %>"-->
+<table>
+<tr><td><label>Dive number: </label><input type="integer" value="<% dive_number %>"</td>
+<td><label>Date: </label><input type="text" value="<% date"></td>
+<td><label>Visibility: </label><input type="text" value="<% visibility %>"</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td colspan="3"><index>Location: </index><input type="textarea" value="<% location %>"</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><label>Total bottom time to date: </label><input type="text" value="<% Total bottom time to date %>"</td></tr>
+<tr><td><label>&nbsp;&nbsp;+&nbsp;&nbsp;Bottom time this dive: </label><input type="text" value="<% Bottom time this dive %>"</td></tr>
+<tr><td><hr /></td></tr>
+<tr><td><label>&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accumulated time: </label><input type="text" value="<% Accumulated time %>"</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><label>PSI/BAR start: </label><input type="text" value="<% PSI/BAR start %>"</td></tr>
+<tr><td><label> PSI/BAR end&nbsp;: </label><input type="text" value="<% PSI/BAR end %>"</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td colspan="3"><label>Dive Comments: </label><input type="textarea" value="<% dive comments %>"</td></tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+
 <input type="submit" value="submit">
 </form>

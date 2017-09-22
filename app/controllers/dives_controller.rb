@@ -71,6 +71,7 @@ class DivesController < ApplicationController
       @dive = current_user.dives.find_by(:user_id => params[:user_id])
       if @dive
         erb :'dives/edit_dive'
+        # redirect to /dives/#{@dive.id}/edit
       else
         @user = current_user
         redirect to 'dives/create_dive'
@@ -93,13 +94,14 @@ class DivesController < ApplicationController
   end
 
   delete '/dives/:id/delete' do
+  #delete '/dives/delete' do
     @user = current_user
     @dive = Dive.find_by(:user_id => params[:user_id])
     if logged_in? && @dive.user_id == current_user.user_id
       @dive.destroy
       redirect "dives/show_dives"
     #does not let a user delete a dive they did not create
-  elsif !(@dive.user_id == current_user.user_id)
+    elsif !(@dive.user_id == current_user.user_id)
       redirect "dives/show_dives"
     else
       erb :"users/login"
