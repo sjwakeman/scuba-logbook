@@ -24,6 +24,7 @@ class DivesController < ApplicationController
       @dives = Dive.all
       @dive = []
       @user = current_user #displays @user.username on show_dives.erb page
+      binding.pry
         erb :'dives/show_dives'
     else
       redirect "/login"

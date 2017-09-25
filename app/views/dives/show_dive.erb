@@ -1,9 +1,21 @@
+<p><%= @dive.dive_number %>
+<p><%= @dive.date %>
+<p><%= @dive.location %>
+<p><%= @dive.visability %>
+<p><%= @dive.bottom_time_to_date %>
+<p><%= @dive.bottom_time_this_dive %>
+<p><%= @dive.accumulated_time %>
+<p><%= @dive.dive_start %>
+<p><%= @dive.dive_end %>
+<p><%= @dive.dive_comments %>
+<p><%= @dive.user_id %>
+
 <p><form action="/dives/<%= @dive %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Dive"></input>
 </form></p>
 <% if @dive %>
-erb :/dives/dive_sheet <!--DISPLAY dive_sheet information for dive.id-->
+erb :/dives/dive_sheet <!--DISPLAY dive_sheet information for @dive-->
 <!--%= @dive.content %-->
 <% end %>
 <p><form action="/dives/:id/edit" method="get">
