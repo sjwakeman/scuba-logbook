@@ -1,25 +1,8 @@
 <p>Welcome, <%= @user.username unless @user.blank? %>!</p>
 
 <h2>Menu</h2>
-
-
-  <!--form action="/show_dives" action="get"-->
-  <!-- <action="/dives" method="get">
-    <input type="submit" value="Display dives">
-  </form> -->
-  <a href='/dives'>
-    <!-- <button value='Display dives'> -->
-    Display Dives
-  </a>
-
-
-
-
-<p>
-  <!--form action="/create_dive" action="get"-->
-  <!--form action="/dives/create_dive" action="get
-  <!--form action="/dives" action="post"-->
-  <form action="/dives/create_dive" method="get">
-    <input type="submit" value="Create new dive">
-  </form>
-</p>
+<table>
+  <tr><td><a href='/dives'>Display Dives</a></td><tr>
+  <tr><td>&nbsp;</td></tr>  
+  <tr><td><a href='/dives/create_dive'>Create New Dive</a></td><tr>
+</table>
