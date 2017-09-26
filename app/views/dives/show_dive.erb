@@ -1,13 +1,23 @@
-<p>Dive number: <%= @dive.dive_number %>
-<p>Date: <%= @dive.date %>
-<p>Location: <%= @dive.location %>
-<p>Visibility: <%= @dive.visibility %>
-<p>Bottom Time to date: <%= @dive.bottom_time_to_date %>
-<p>Bottom Time this dive: <%= @dive.bottom_time_this_dive %>
-<p>Accumulated time: <%= @dive.accumulated_time %>
-<p>PSI/BAR start: <%= @dive.dive_start %>
-<p>PSI/BAR end: <%= @dive.dive_end %>
-<p>Dive Comments: <%= @dive.dive_comments %>
+<!--DISPLAY dive_sheet information for @dive-->
+<table border="1">
+  <tr><td>Dive number: <%= @dive.dive_number %></td>
+    <td>Date: <%= @dive.date %></td>
+    <td>Visibility: <%= @dive.visibility %></td></tr>
+<tr><td>&nbsp;</td></tr>
+    <tr><td>Location: <%= @dive.location %></td></tr>
+    <tr><td>&nbsp;</td></tr>
+
+    <tr><td>Total bottom time to date: <%= @dive.bottom_time_to_date %></td></tr>
+    <tr><td>&nbsp;&nbsp;+&nbsp;&nbsp;Bottom time this dive: <%= @dive.bottom_time_this_dive %></td></tr>
+    <tr><td><hr /></td></tr>
+    <tr><td>&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accumulated time: <%= @dive.accumulated_time %></td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>PSI/BAR start: <%= @dive.dive_start %></td></tr>
+    <tr><td>PSI/BAR end&nbsp;: <%= @dive.dive_end %></td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td colspan="3"><label>Dive Comments: <%= @dive.dive_comments %></td></tr>
+    <tr><td>&nbsp;</td></tr>
+</table>
 
 <p><form action="/dives/<%= @dive %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
