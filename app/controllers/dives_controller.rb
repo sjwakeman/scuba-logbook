@@ -52,18 +52,6 @@ class DivesController < ApplicationController
      Dive.create(dive_number: @dive_number, user_id: current_user.id, date: @date, location: @location, visability: @visability, bottom_time_to_date: @bottom_time_to_date, bottom_time_this_dive: @bottom_time_this_dive, accumulated_time: @accumulated_time, dive_start: @dive_start, dive_end: @dive_end, dive_comments: @dive_comments)
      binding.pry
      redirect "/dives"
-     #<table>
-     #<tr><td>{params[:dive_number]}</td>
-     #<td>{params[:date]}</td>
-     #<td>{params[:visability]}</td></tr>
-     #<tr><td>{params[:location]}</td></tr>
-     #<tr><td>{params[:bottom_time_to_date]}</td></tr>
-     #<tr><td>{params[:bottom_time_this_dive]}</td></tr>
-     #<tr><td>{params[:accumulated_time]}</td></tr>
-     #<tr><td>{params[:dive_start]}</td></tr>
-     #<tr><td>{params[:dive_end]}</td></tr>
-     #<tr><td>{params[:dive_comments]}</td></tr>
-     #</table>
    end
  end
 
