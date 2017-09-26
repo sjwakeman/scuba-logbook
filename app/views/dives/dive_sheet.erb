@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<form action="/dives" method="post">
 <html>
   <head>
     <meta charset="UTF-8">
@@ -7,22 +6,23 @@
     <link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">
   </head>
   <body id="page-top">
-<table border="0">
+<form action="/dives" method="post">
+<table>
   <tr><td><label>Dive number: </label><input type="integer" name="dive_number"></td>
   <td><label>Date: </label><input type="text" name="date"></td>
   <td><label>Visibility: </label><input type="text" name="visibility"></td></tr>
   <tr><td>&nbsp;</td></tr>
   <tr><td colspan="3"><index>Location: </index><input type="textarea" name="location"></td></tr>
   <tr><td>&nbsp;</td></tr>
-  <tr><td><label>Total bottom time to date: </label><input type="text" name="Total bottom time to date"></td></tr>
-  <tr><td><label>&nbsp;&nbsp;+&nbsp;&nbsp;Bottom time this dive: </label><input type="text" name="Bottom time this dive"></td></tr>
+  <tr><td><label>Total bottom time to date: </label><input type="text" name="total_bottom_time_ to_date"></td></tr>
+  <tr><td><label>&nbsp;&nbsp;+&nbsp;&nbsp;Bottom time this dive: </label><input type="text" name="bottom_time_this_dive"></td></tr>
   <tr><td><hr /></td></tr>
-  <tr><td><label>&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accumulated time: </label><input type="text" name="Accumulated time"></td></tr>
+  <tr><td><label>&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accumulated time: </label><input type="text" name="accumulated_time"></td></tr>
   <tr><td>&nbsp;</td></tr>
-  <tr><td><label>PSI/BAR start: </label><input type="text" name="PSI/BAR start"></td></tr>
-  <tr><td><label> PSI/BAR end&nbsp;: </label><input type="text" name="PSI/BAR end"></td></tr>
+  <tr><td><label>PSI/BAR start: </label><input type="text" name="dive_start"></td></tr>
+  <tr><td><label> PSI/BAR end&nbsp;: </label><input type="text" name="dive_end"></td></tr>
   <tr><td>&nbsp;</td></tr>
-  <tr><td colspan="3"><label>Dive Comments: </label><input type="textarea" name="dive comments"></td></tr>
+  <tr><td colspan="3"><label>Dive Comments: </label><input type="textarea" name="dive_comments"></td></tr>
   <tr><td>&nbsp;</td></tr>
 </table>
 <input type="submit" value="submit">

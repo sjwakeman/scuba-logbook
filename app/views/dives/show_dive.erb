@@ -1,14 +1,13 @@
-<p><%= @dive.dive_number %>
-<p><%= @dive.date %>
-<p><%= @dive.location %>
-<p><%= @dive.visability %>
-<p><%= @dive.bottom_time_to_date %>
-<p><%= @dive.bottom_time_this_dive %>
-<p><%= @dive.accumulated_time %>
-<p><%= @dive.dive_start %>
-<p><%= @dive.dive_end %>
-<p><%= @dive.dive_comments %>
-<p><%= @dive.user_id %>
+<p>Dive number: <%= @dive.dive_number %>
+<p>Date: <%= @dive.date %>
+<p>Location: <%= @dive.location %>
+<p>Visability: <%= @dive.visibility %>
+<p>Bottom Time to date: <%= @dive.bottom_time_to_date %>
+<p>Bottom Time this dive: <%= @dive.bottom_time_this_dive %>
+<p>Accumulated time: <%= @dive.accumulated_time %>
+<p>PSI/BAR start: <%= @dive.dive_start %>
+<p>PSI/BAR end: <%= @dive.dive_end %>
+<p>Dive Comments: <%= @dive.dive_comments %>
 
 <p><form action="/dives/<%= @dive %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
