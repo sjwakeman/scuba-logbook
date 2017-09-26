@@ -4,7 +4,7 @@ class CreateDives < ActiveRecord::Migration
        t.integer :dive_number
        t.string :date
        t.string :location
-       t.string :visability
+       t.string :visibility
        t.string :bottom_time_to_date
        t.string :bottom_time_this_dive
        t.string :accumulated_time
