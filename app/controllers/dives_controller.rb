@@ -67,8 +67,21 @@ class DivesController < ApplicationController
     else
       @user = current_user
       @dive = current_user.dives.find_by(:user_id => params[:user_id])
+      binding.pry
       if @dive
-        erb :'dives/edit_dive'
+        @dive_number = params[:dive_number]
+        @date = params[:date]
+        @location = params[:location]
+        @visibility = params[:visibility]
+        @bottom_time_to_date = params[:bottom_time_to_date]
+        @bottom_time_this_dive = params[:bottom_time_this_dive]
+        @accumulated_time = params[:accumulated_time]
+        @dive_start = params[:dive_start]
+        @dive_end = params[:dive_end]
+        @dive_comments = params[:dive_comments]
+        Dive.update(dive_number: @dive_number, user_id: current_user.id, date: @date, location: @location, visibility: @visibility, bottom_time_to_date: @bottom_time_to_date, bottom_time_this_dive: @bottom_time_this_dive, accumulated_time: @accumulated_time, dive_start: @dive_start, dive_end: @dive_end, dive_comments: @dive_comments)
+        #binding.pry NOT GETTING HIT
+          erb :'dives/edit_dive'
       else
         @user = current_user
         redirect to 'dives/create_dive'
