@@ -19,7 +19,7 @@
     <tr><td>&nbsp;</td></tr>
 </table>
 
-<p><form action="/dives/<%= @dive %>/delete" method="post">
+<p><form action="/dives/:id/delete" method="delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Dive"></input>
 </form></p>
