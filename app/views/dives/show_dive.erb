@@ -25,11 +25,14 @@
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Dive"></input>
 </form></p>
+
 <% if @dive %>
-<!--erb :/dives/dive_sheet DISPLAY dive_sheet information for @dive-->
-<!--%= @dive.content %-->
 <% end %>
-<!--form action="/dives/:id" method="patch"-->
+
 <p><form action="/dives/<%= @dive.id %>/edit" method="get">
-  <input type="submit" value="Edit dive">
+  <input type="submit" value="Edit Dive">
+</form></p>
+
+<p><form action="/dives" method="get">
+  <input type="submit" value="Display Dives">
 </form></p>

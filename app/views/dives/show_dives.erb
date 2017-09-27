@@ -3,3 +3,10 @@
 <% @dives.each_with_index do |dive, index| %>
 <h3><%= index + 1 %>. <a href="/dives/<%= dive.id %>"><%= dive.location %></a></h3>
 <% end %>
+
+<table>
+  <tr><td></td></tr>
+  <tr><td></td></tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr><td><a href='/dives/create_dive'>Create New Dive</a></td><tr>
+</table>

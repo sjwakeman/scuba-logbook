@@ -1,10 +1,4 @@
-require 'sinatra/base'
-require 'rack-flash'
-
 class User < ActiveRecord::Base
-
-  enable :sessions
-  use Rack::Flash
 
   has_secure_password
   has_many :dives
