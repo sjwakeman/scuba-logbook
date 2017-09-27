@@ -1,7 +1,9 @@
 require 'pry'
 require 'tux'
+require 'rack-flash'
 
 class UsersController < ApplicationController
+  use Rack::Flash
 
   get '/' do
     erb :'users/signup'
@@ -17,7 +19,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == "" || User.find_by(username: params[:username])
-      flash[:message] = "An entry field is empty or the Username is already taken."
+      flash[:message] = "An entry field is empty or the Username already exists."
       redirect to "/signup"
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
