@@ -44,6 +44,7 @@ end
       session[:user_id] = @user[:id]
       redirect to '/dives/welcome'
     else
+      flash[:message] = "Please signup before logging in."
       erb :'users/login'
     end
   end
