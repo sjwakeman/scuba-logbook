@@ -18,12 +18,11 @@ class DivesController < ApplicationController
     end
   end
 
-  #get '/show_dives' do
   get '/dives' do
     if logged_in?
       @dives = current_user.dives
       @user = current_user #displays @user.username on show_dives.erb page
-        erb :'dives/show_dives'
+      erb :'dives/show_dives'
     else
       redirect "/login"
     end
@@ -47,7 +46,7 @@ class DivesController < ApplicationController
      @dive_end = params[:dive_end]
      @dive_comments = params[:dive_comments]
      Dive.create(dive_number: @dive_number, user_id: current_user.id, date: @date, location: @location, visibility: @visibility, bottom_time_to_date: @bottom_time_to_date, bottom_time_this_dive: @bottom_time_this_dive, accumulated_time: @accumulated_time, dive_start: @dive_start, dive_end: @dive_end, dive_comments: @dive_comments)
-     redirect "/dives"
+      redirect "/dives"
    end
  end
 
@@ -57,7 +56,7 @@ class DivesController < ApplicationController
    else
      @user = current_user
      @dive = Dive.find(params[:id])
-     erb :'dives/show_dive'
+      erb :'dives/show_dive'
    end
  end
 
@@ -68,7 +67,7 @@ class DivesController < ApplicationController
       @user = current_user
       @dive = Dive.find(params[:id])
       if @dive && @user == @dive.user
-          erb :'dives/edit_dive'
+        erb :'dives/edit_dive'
       else
         redirect to 'dives/create_dive'
       end
@@ -95,7 +94,7 @@ class DivesController < ApplicationController
       @dive_end = params[:dive_end]
       @dive_comments = params[:dive_comments]
       @dive.update(dive_number: @dive_number, user_id: current_user.id, date: @date, location: @location, visibility: @visibility, bottom_time_to_date: @bottom_time_to_date, bottom_time_this_dive: @bottom_time_this_dive, accumulated_time: @accumulated_time, dive_start: @dive_start, dive_end: @dive_end, dive_comments: @dive_comments)
-      redirect "/dives/#{@dive.id}"
+        redirect "/dives/#{@dive.id}"
     end
   end
 
@@ -104,7 +103,7 @@ class DivesController < ApplicationController
     @dive = Dive.find(params[:id])
     if logged_in? && @dive.user_id == current_user.id
       @dive.destroy
-      redirect "/dives"
+        redirect "/dives"
     #does not let a user delete a dive they did not create
     else
       redirect "/login"
