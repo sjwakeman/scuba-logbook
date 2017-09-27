@@ -1,23 +1,23 @@
 <title>Scuba Logbook</title>
-<form action="/dives/<%= @dive %>" method="post" >
+<form action="/dives/<%= @dive.id %>" method="post" >
 <input type="hidden" id="hidden" name="_method" value="patch">
 
 <table>
-<tr><td><label>Dive number: </label><input type="integer" value="<% dive_number %>"</td>
-<td><label>Date: </label><input type="text" value="<% date"></td>
-<td><label>Visibility: </label><input type="text" value="<% visibility %>"</td></tr>
+<tr><td><label>Dive number: </label><input type="integer" name="dive_number" value="<%= @dive.dive_number %>"></td>
+<td><label>Date: </label><input type="text" name="date" value="<%= @dive.date %>"></td>
+<td><label>Visibility: </label><input type="text" name="visibility" value="<%=  @dive.visibility %>"></td></tr>
 <tr><td>&nbsp;</td></tr>
-<tr><td colspan="3"><index>Location: </index><input type="textarea" value="<% location %>"</td></tr>
+<tr><td colspan="3"><index>Location: </index><input type="textarea" name="location" value="<%= @dive.location %>"></td></tr>
 <tr><td>&nbsp;</td></tr>
-<tr><td><label>Total bottom time to date: </label><input type="text" value="<% Total bottom time to date %>"</td></tr>
-<tr><td><label>&nbsp;&nbsp;+&nbsp;&nbsp;Bottom time this dive: </label><input type="text" value="<% Bottom time this dive %>"</td></tr>
+<tr><td><label>Total bottom time to date: </label><input type="text" name="bottom_time_to_date" value="<%= @dive.bottom_time_to_date %>"></td></tr>
+<tr><td><label>&nbsp;&nbsp;+&nbsp;&nbsp;Bottom time this dive: </label><input type="text" name="bottom_time_this_dive" value="<%= @dive.bottom_time_this_dive %>"></td></tr>
 <tr><td><hr /></td></tr>
-<tr><td><label>&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accumulated time: </label><input type="text" value="<% Accumulated time %>"</td></tr>
+<tr><td><label>&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accumulated time: </label><input type="text" name="accumulated_time" value="<%= @dive.accumulated_time %>"></td></tr>
 <tr><td>&nbsp;</td></tr>
-<tr><td><label>PSI/BAR start: </label><input type="text" value="<% PSI/BAR start %>"</td></tr>
-<tr><td><label> PSI/BAR end&nbsp;: </label><input type="text" value="<% PSI/BAR end %>"</td></tr>
+<tr><td><label>PSI/BAR start: </label><input type="text" name="dive_start" value="<%= @dive.dive_start %>"></td></tr>
+<tr><td><label> PSI/BAR end&nbsp;: </label><input type="text" name="dive_end" value="<%= @dive.dive_end %>"></td></tr>
 <tr><td>&nbsp;</td></tr>
-<tr><td colspan="3"><label>Dive Comments: </label><input type="textarea" value="<% dive comments %>"</td></tr>
+<tr><td colspan="3"><label>Dive Comments: </label><input type="textarea" name="dive_comments" value="<%= @dive.dive_comments %>"></td></tr>
 <tr><td>&nbsp;</td></tr>
 </table>
 

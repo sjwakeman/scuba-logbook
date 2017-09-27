@@ -21,14 +21,15 @@
     <tr><td>&nbsp;</td></tr>
 </table>
 
-<p><form action="/dives/:id/delete" method="delete">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
+<p><form action="/dives/<%= @dive.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Dive"></input>
 </form></p>
 <% if @dive %>
 <!--erb :/dives/dive_sheet DISPLAY dive_sheet information for @dive-->
 <!--%= @dive.content %-->
 <% end %>
-<p><form action="/dives/:id/edit" method="get">
+<!--form action="/dives/:id" method="patch"-->
+<p><form action="/dives/<%= @dive.id %>/edit" method="get">
   <input type="submit" value="Edit dive">
 </form></p>
