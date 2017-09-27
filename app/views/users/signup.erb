@@ -7,3 +7,7 @@
   <p>Password: <input type="text" name="password"></p>
   <input type="submit" value="Sign Up">
 </form>
+
+<% if flash.has?(:message) %>
+ <%= flash[:message] %>
+<% <% end %>

@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == "" || User.find_by(username: params[:username])
+      flash[:message] = "An entry field is empty or the Username is already taken."
       redirect to "/signup"
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
