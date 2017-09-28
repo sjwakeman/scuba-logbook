@@ -1,35 +1,41 @@
 <table border="0">
-    <tr><td>Dive number: <%= @dive.dive_number %></td>
+  <tr><td></td></tr>
+  <tr><td></td></tr>
+  <tr><td style="color:red;">
+  <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+  <% end %></td></tr>
+  <tr><td></td></tr>
+  <tr><td></td></tr>
+  <tr><td>Dive number: <%= @dive.dive_number %></td>
     <td>Date: <%= @dive.date %></td>
     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td>Visibility: <%= @dive.visibility %></td></tr>
-    <tr><td>&nbsp;</td></tr>
-    <tr><td>Location: <%= @dive.location %></td></tr>
-    <tr><td>&nbsp;</td></tr>
-    <tr><td>Total bottom time to date: <%= @dive.bottom_time_to_date %></td></tr>
-    <tr><td>&nbsp;&nbsp;+&nbsp;&nbsp;Bottom time this dive: <%= @dive.bottom_time_this_dive %></td></tr>
-    <tr><td><hr /></td></tr>
-    <tr><td>&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accumulated time: <%= @dive.accumulated_time %></td></tr>
-    <tr><td>&nbsp;</td></tr>
-    <tr><td>PSI/BAR start: <%= @dive.dive_start %></td></tr>
-    <tr><td>PSI/BAR end&nbsp;: <%= @dive.dive_end %></td></tr>
-    <tr><td>&nbsp;</td></tr>
-    <tr><td colspan="3"><label>Dive Comments: <%= @dive.dive_comments %></td></tr>
-    <tr><td>&nbsp;</td></tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr><td>Location: <%= @dive.location %></td></tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr><td>Total bottom time to date: <%= @dive.bottom_time_to_date %></td></tr>
+  <tr><td>&nbsp;&nbsp;+&nbsp;&nbsp;Bottom time this dive: <%= @dive.bottom_time_this_dive %></td></tr>
+  <tr><td><hr /></td></tr>
+  <tr><td>&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accumulated time: <%= @dive.accumulated_time %></td></tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr><td>PSI/BAR start: <%= @dive.dive_start %></td></tr>
+  <tr><td>PSI/BAR end&nbsp;: <%= @dive.dive_end %></td></tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr><td colspan="3"><label>Dive Comments: <%= @dive.dive_comments %></td></tr>
+  <tr><td>&nbsp;</td></tr>
 </table>
+  <% if @dive.user_id == current_user.id %>
+    <p><form action="/dives/<%= @dive.id %>/delete" method="post">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete Dive"></input>
+    </form></p>
 
-<p><form action="/dives/<%= @dive.id %>/delete" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Dive"></input>
-</form></p>
+    <p><form action="/dives/<%= @dive.id %>/edit" method="get">
+      <input type="submit" value="Edit Dive">
+    </form></p>
+  <% end %>
 
-<% if @dive %>
-<% end %>
-
-<p><form action="/dives/<%= @dive.id %>/edit" method="get">
-  <input type="submit" value="Edit Dive">
-</form></p>
-
-<p><form action="/dives" method="get">
-  <input type="submit" value="Display Dives">
-</form></p>
+  <p><form action="/dives" method="get">
+    <input type="submit" value="Display Dives">
+  </form></p>

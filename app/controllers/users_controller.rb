@@ -39,9 +39,9 @@ class UsersController < ApplicationController
 end
 
   post '/login' do
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by(username: params[:username]) # returns a user instance object
     if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user[:id]
+      session[:user_id] = @user.id
         redirect to '/dives/welcome'
     else
       flash[:message] = "Please signup before logging in."

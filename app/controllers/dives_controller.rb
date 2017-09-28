@@ -1,7 +1,9 @@
 require 'pry'
 require 'tux'
+require 'rack-flash'
 
 class DivesController < ApplicationController
+  use Rack::Flash
 
   get '/dives/welcome' do
     @user = current_user
@@ -11,7 +13,6 @@ class DivesController < ApplicationController
   get '/dives/create_dive' do
     if logged_in?
     @user = current_user
-      #erb :'dives/create_dive'
       erb :'dives/dive_sheet'
     else
       redirect to '/login'
@@ -51,12 +52,14 @@ class DivesController < ApplicationController
  end
 
  get '/dives/:id' do
+   @user = current_user
+   @dive = Dive.find(params[:id])
    if !logged_in?
      redirect "/login"
+  elsif @dive.user_id != current_user.id
+    redirect "/dives"
    else
-     @user = current_user
-     @dive = Dive.find(params[:id])
-      erb :'dives/show_dive'
+    erb :'dives/show_dive'
    end
  end
 
@@ -69,7 +72,7 @@ class DivesController < ApplicationController
       if @dive && @user == @dive.user
         erb :'dives/edit_dive'
       else
-        redirect to 'dives/create_dive'
+        redirect to '/dives'
       end
     end
   end
@@ -94,6 +97,7 @@ class DivesController < ApplicationController
       @dive_end = params[:dive_end]
       @dive_comments = params[:dive_comments]
       @dive.update(dive_number: @dive_number, user_id: current_user.id, date: @date, location: @location, visibility: @visibility, bottom_time_to_date: @bottom_time_to_date, bottom_time_this_dive: @bottom_time_this_dive, accumulated_time: @accumulated_time, dive_start: @dive_start, dive_end: @dive_end, dive_comments: @dive_comments)
+flash[:message] = "Dive was updated confirmation."
         redirect "/dives/#{@dive.id}"
     end
   end
@@ -103,9 +107,11 @@ class DivesController < ApplicationController
     @dive = Dive.find(params[:id])
     if logged_in? && @dive.user_id == current_user.id
       @dive.destroy
+        flash[:message] = "Dive was deleted confirmation."
         redirect "/dives"
     #does not let a user delete a dive they did not create
     else
+      flash[:message] = "You have unauthorized access to this dive."
       redirect "/login"
     end
   end

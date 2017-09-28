@@ -7,6 +7,12 @@
 <table>
   <tr><td></td></tr>
   <tr><td></td></tr>
+  <tr><td style="color:red;">
+  <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+  <% end %></td></tr>
+  <tr><td></td></tr>
+  <tr><td></td></tr>
   <tr><td>&nbsp;</td></tr>
   <tr><td><a href='/dives/create_dive'>Create New Dive</a></td><tr>
   <tr><td>&nbsp;</td></tr>
