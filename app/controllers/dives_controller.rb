@@ -57,6 +57,7 @@ class DivesController < ApplicationController
    if !logged_in?
      redirect "/login"
   elsif @dive.user_id != current_user.id
+    flash[:message] = "You have unauthorized access to this dive."
     redirect "/dives"
    else
     erb :'dives/show_dive'
