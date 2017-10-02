@@ -31,7 +31,6 @@ class DivesController < ApplicationController
     end
   end
 
-
  post '/dives' do
    if !logged_in?
      flash[:message] = "You must be logged in to view the page."
