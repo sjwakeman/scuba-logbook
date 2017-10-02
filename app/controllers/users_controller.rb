@@ -5,10 +5,6 @@ require 'rack-flash'
 class UsersController < ApplicationController
   use Rack::Flash
 
-  #get '/' do
-    #erb :'users/signup'
-  #end
-
   get '/signup' do
     if !logged_in?
       erb :'users/signup'
