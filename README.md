@@ -1,24 +1,25 @@
 Create a new table in the database to store the scuba dives.
 
 Scuba Dives should have:
-A dive number, date, location, total bottom time, bottom time this dive, accumulated time, PSI/BAR start, PSI/BAR end and dive comments (which can be written as one string containing all the notes).
+A dive number, date, visibility, location, total bottom time to date, bottom time this dive, accumulated time, PSI/BAR start, PSI/BAR end and dive comments (which can be written as one string containing all the notes).
 
 Make sure you have a corresponding model for your dives.
 
-In the dive_controller.rb, set up a controller action that will render a form to create a new dive. This controller action should create and save this new dive to the database.
+In the dives_controller.rb, set up a controller action that will render a form to create a new dive. This controller action should create and save this new dive to the database.
 
-Again in the dive_controller.rb, create a controller action that uses RESTful routes to display a single dive.
+Again in the dives_controller.rb, create a controller action that uses RESTful routes to display a single dive.
 
 Create a third controller action that uses RESTful routes and renders a form to edit a single dive. This controller action should update the entry in the database with the changes, and then redirect to the dive show page.
 
-Create a controller action (index action) that displays all the dives in the database.
+Create a controller action (show dives) that displays all the dives for an individual user in the database.
 
-Add to the dive show page a form that allows a user to delete a dive. This form should submit to a controller action that deletes the entry from the database and redirects to the index page.
+Add to the dive show page a form that allows a user to delete a dive. This form should submit to a controller action that deletes the entry from the database and redirects to the show dives page.
 
 =====================================================================================
 
 GEMFILE AND ENVIRONMENT.RB
 This project is supported by Bundler and includes a Gemfile.
+
 Run bundle install before getting started on the project.
 As this project has quite a few files, an environment.rb is included that loads all the code in your project along with Bundler. You do not ever need to edit this file. When you see require_relative ../config/environment, that is how your environment and code are loaded.
 
@@ -27,16 +28,17 @@ You'll need to create two models in app/models, one User model and one Dive. Bot
 
 MIGRATIONS
 You'll need to create two migrations to create the users and the dives table.
-Users should have a username, email, and password, and have many dives.
-Dives should have content, belong to a user.
+Users should have a username, email, has a secure password, and has many dives.
+Dives should have a dive number, date, visibility, location, bottom_time_to_date, bottom_time_this_dive, accumulated_time, dive_start, dive end, dive comments, user id and belong to a user.
 
 ASSOCIATIONS
-You'll need to set up the relationship between users and tweets. Think about how the user interacts with the dives, what belongs to who?
-HOME PAGE
-You'll need a controller action to load the home page. You'll want to create a view that will eventually link to both a login page and signup page. The homepage should respond to a GET request to /.
+You'll need to set up the relationship between users and dives. Think about how the user interacts with the dives, what belongs to who?
+
+INDEX PAGE
+You'll need a controller action to load the index page. You'll want to create a view that will eventually link to both a login page and signup page. The  index page should respond to a GET request to /.
 
 CREATE DIVE
-You'll need to create two controller actions, one to load the create dive form, and one to process the form submission. The dive should be created and saved to the database. The form should be loaded via a GET request to dives/create_dove and submitted via a POST to /dives.
+You'll need to create two controller actions, one to load the create dive form, and one to process the form submission. The dive should be created and saved to the database. The form should be loaded via a GET request to dives/create_dive and submitted via a POST to /dives.
 
 SHOW DIVE
 You'll need to create a controller action that displays the information for a single dive. You'll want the controller action respond to a GET request to /dives/:id.
@@ -54,7 +56,7 @@ SIGN UP
 You'll need to create two controller actions, one to display the user signup and one to process the form submission. The controller action that processes the form submission should create the user and save it to the database.
 The form to sign up should be loaded via a GET request to /signup and submitted via a POST request to /signup.
 The signup action should also log the user in and add the user_id to the sessions hash.
-Make sure you add the Signup link to the home page.
+Make sure you add the Signup link to the login page.
 
 LOG IN
 You'll need two more controller actions to process logging in: one to display the form to log in and one to log add the user_id to the sessions hash.
