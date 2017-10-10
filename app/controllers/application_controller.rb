@@ -1,4 +1,4 @@
-require './config/environment' 
+require './config/environment'
 
 class ApplicationController < Sinatra::Base
 
@@ -20,11 +20,22 @@ class ApplicationController < Sinatra::Base
 
     def current_user
       @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-      end
     end
 
-    get "/users/:slug" do
-      @user = User.find_by_slug(params["slug"])
-      erb :"/users/show"
+  end
+
+  get "/users/:slug" do
+    @user = User.find_by_slug(params["slug"])
+    erb :"/users/show"
+  end
+
+  private
+
+  def authenticate_user
+    # if a user is noooooot logged in
+    if !logged_in?
+      flash[:message] = "You must be logged in to view the page."
+      redirect "/login"
     end
+  end  
 end

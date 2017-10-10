@@ -6,36 +6,24 @@ class DivesController < ApplicationController
   use Rack::Flash
 
   get '/dives/welcome' do
-    @user = current_user
-      erb :'dives/welcome'
+    authenticate_user
+    erb :'dives/welcome'
   end
 
   get '/dives/create_dive' do
-    if logged_in?
-    @user = current_user
-      erb :'dives/dive_sheet'
-    else
-      flash[:message] = "You must be logged in to view the page."
-      redirect to '/login'
-    end
+    authenticate_user
+    erb :'dives/dive_sheet'
   end
 
   get '/dives' do
-    if logged_in?
-      @dives = current_user.dives
-      @user = current_user #displays @user.username on show_dives.erb page
-      erb :'dives/show_dives'
-    else
-      flash[:message] = "You must be logged in to view the page."
-      redirect "/login"
-    end
+    authenticate_user
+    @dives = current_user.dives
+    erb :'dives/show_dives'
   end
 
  post '/dives' do
-   if !logged_in?
-     flash[:message] = "You must be logged in to view the page."
-     redirect "/login"
-   elsif params[:dive_number].empty? || params[:location].empty?
+   authenticate_user
+   if params[:dive_number].empty? || params[:location].empty?
      redirect "/dives/create_dive"
    else
      @dive_number = params[:dive_number]
@@ -54,12 +42,9 @@ class DivesController < ApplicationController
  end
 
  get '/dives/:id' do
-   @user = current_user
+   authenticate_user
    @dive = Dive.find(params[:id])
-   if !logged_in?
-     flash[:message] = "You must be logged in to view the page."
-     redirect "/login"
-   elsif @dive.user_id != current_user.id
+   if @dive.user_id != current_user.id
     flash[:message] = "You have unauthorized access to this dive."
     redirect "/dives"
    else
@@ -68,17 +53,12 @@ class DivesController < ApplicationController
  end
 
  get '/dives/:id/edit' do
-    if !logged_in?
-      flash[:message] = "You must be logged in to view the page."
-      redirect to '/login'
+    authenticate_user
+    @dive = Dive.find(params[:id])
+    if @dive && current_user == @dive.user
+      erb :'dives/edit_dive'
     else
-      @user = current_user
-      @dive = Dive.find(params[:id])
-      if @dive && @user == @dive.user
-        erb :'dives/edit_dive'
-      else
-        redirect to '/dives'
-      end
+      redirect to '/dives'
     end
   end
 
@@ -86,10 +66,8 @@ class DivesController < ApplicationController
     @user = current_user
     @dive = Dive.find(params[:id])
     @dive_number = params[:dive_number]
-    if !logged_in?
-      flash[:message] = "You must be logged in to view the page."
-      redirect "/login"
-    elsif params[:dive_number].empty?
+    authenticate_user
+    if params[:dive_number].empty?
       redirect "/dives/#{@dive.id}/edit"
     else
       @dive_number = params[:dive_number]
@@ -109,16 +87,15 @@ flash[:message] = "Dive was updated confirmation."
   end
 
   delete '/dives/:id/delete' do
-    @user = current_user
+    authenticate_user
     @dive = Dive.find(params[:id])
-    if logged_in? && @dive.user_id == current_user.id
+    if @dive && @dive.user == current_user
       @dive.destroy
-        flash[:message] = "Dive was deleted confirmation."
-        redirect "/dives"
-    #does not let a user delete a dive they did not create
+      flash[:message] = "Dive was deleted confirmation."
+      redirect "/dives"
     else
       flash[:message] = "You have unauthorized access to this dive."
-      redirect "/login"
+      redirect "/dives/welcome"
     end
   end
 end
